@@ -1,0 +1,23 @@
+body{
+    position:relative;
+}
+.img{
+    width:50%;
+    display:flex;
+}
+.div2-area{
+    top:100px;
+    width: 40%;
+    height:250px;
+    box-shadow: 0px 0px 1px 0px;
+    margin: auto;
+    position: relative;
+}
+
+.btn{
+    border-radius: 15px !important;
+   
+}
+p{
+    text-align: center;
+}    
