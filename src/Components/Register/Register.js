@@ -12,9 +12,11 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
     const Id = useParams();
+    console.log(Id)
     const id = Id.id
     const [selectedDt, setSelectedData] = useState({});
     const [loggedInUser, setloggedInUser] = useContext(UserContext);
+    const [submit, setSubmit] = useState(true)
 
     useEffect(() => {
 
@@ -22,11 +24,13 @@ const Register = () => {
             .then(res => res.json())
             .then(result => {
                 const IdData = result.find(rs => rs.id == id)
+                console.log(IdData)
                 setSelectedData(IdData)
 
             })
-    }, [id])
+    }, [])
     const handleSubmit = (e) => {
+        setSubmit(false)
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('date').value;
@@ -51,16 +55,16 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log( 'data', result)
+              
             })
-
-        e.preventDefault()
+            alert("Registation success tap again button to go to your Organization")
+        e.preventDefault();
     }
     return (
 
         <div className='div1-area'>
 
-            <form className='form1-area' onSubmit={handleSubmit} >
+            <form className='form1-area' onSubmit={handleSubmit}>
                 <img src="https://i.ibb.co/RvFtmYB/Group-1329.png" alt="" />
                 <h2>Register as a Volenter</h2>
                 <TextField
@@ -96,14 +100,18 @@ const Register = () => {
                     fullWidth
                     margin="normal"
                 />
-              <Link to='/volenters'>  <Button type="submit" className="button" variant="contained" color="primary" fullWidth>
+                  { submit === true ?  <Button type="submit" className="button" variant="contained" color="primary" fullWidth>
                     Register
-                     </Button></Link>
-
-            </form>
-
-
-
+                     </Button> :  <Link to="/volenters"> <Button className="button" variant="contained" color="primary" fullWidth>
+                     Go to Your Registered volentering
+                     </Button>  </Link>}
+                 </form>
+      
+                     
+           
+     
+           
+           
 
         </div>
     );
