@@ -1,46 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card } from '@material-ui/core';
-const useStyles = makeStyles((theme) => ({
-    root: {
-     alignItems: 'center',
-      width: '40%',
-      border: '1px solid red',
-      margin: '10px',
-      padding: '10px'
 
-    },
- 
-  }));
 const Heros = (props) => {
-    console.log(props)
-    const classes = useStyles();
+  
+  
     const {Name, Email, Date, Organization, Description, _id} = props.data;
-    console.log("id",_id)
 
-    const deleteProduct = (event,_id) =>{
-        console.log(_id)
-        console.log('deleting')
-        // fetch(`http://localhost:4000/delete/${_id}`,{
-        //     method: 'DELETE'
-        // })
-        // .then(res => res.json())
-        // .then(result =>{
-        //     if(result){
-              
-        //         event.target.parentNode.style.display = "none"
-        //     }
-        // })
-    }
+    const deleteProduct = (e,_id) =>{
+       
+       console.log(e)
+
+        fetch(`https://ancient-sands-98079.herokuapp.com/delete/${_id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(result =>{
+            if(result){  
+                e.target.parentNode.style.display = "none";
+                            
+            }
+        })
+        e.preventDefault()  ;
+       
+    } 
     return (
-        <Card className={classes.root} xs={12}>
-            <h3 className={classes.paper}>{Name} </h3>
-            <h3 className={classes.paper}>{Email}</h3>
-            <h3 className={classes.paper}>{Date}</h3>
-            <h3 className={classes.paper}>{Organization}</h3>
-            <h3 className={classes.paper}>{Description}</h3>
-             <Button variant="contained" color="secondary" onClick={deleteProduct`(event,_id)`}>Delete</Button>
-        </Card>
+        
+        <div className="col-md-6">
+            <form onSubmit={(e)=>deleteProduct(e,_id)}  >
+            <h3  >{Name} </h3>
+            <h3 className="fs-5">{Email}</h3>
+            <h3 className="fs-5">{Date}</h3>
+            <h3 className="fs-5">{Organization}</h3>
+            <h3 className="fs-5">{Description}</h3>
+             <button variant="contained" color="secondary" type="submit" >Delete</button>
+        </form>
+        </div>
+       
     );
 };
 

@@ -10,49 +10,21 @@ import { Link } from 'react-router-dom';
 
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '30%',
-    margin: '5px'
-
-
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9,
-    borderRadius: '10px',
-
-
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-
-}));
 
 const DataDetails = (props) => {
 
 
-  const classes = useStyles();
+  
   const { url, id, caption } = props.data;
   return (
-    <Card sm={6} xs={12} className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={url}
-      />
-      <Link className="style" to={`/registation/${id}`}>
-        <CardContent className="content" >
-          <Typography variant="h6">
-            {caption}
-          </Typography>
-        </CardContent>
-      </Link>
-    </Card>
+    <Link to={`registation/${id}`} className="col-md-3 p-2"  >
+    <div class="card" style={{borderRadius:"10px"}}>
+      <img src={url} class="card-img-top" alt="..."/>
+        <div class="card-body">
+          <h5 class="card-title text-center text-uppercase text"  >{caption}</h5>
+        </div>
+       </div>
+    </Link>
   );
 };
 

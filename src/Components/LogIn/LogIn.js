@@ -1,34 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './LogIn.css';
-import { Button, Card, CardActionArea, CardMedia, CardActions,CardContent } from '@material-ui/core';
 import firebase from "firebase/app";
-import { makeStyles } from '@material-ui/core/styles';
+
 import "firebase/auth";
 import firebaseConfig from '../firebasae.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import { Card,Button } from 'react-bootstrap';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 350,
-    margin: 'auto',
-  },
-  media: {
-    height: 140,
-  },
-  btn: {
-    margin: 'auto'
-   
-  }
-});
+
 
 const LogIn = () => {
   const [loggedInUser, setloggedInUser] = useContext(UserContext)
-  const classes = useStyles();
+
   const history = useHistory();
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -81,28 +69,30 @@ const LogIn = () => {
       });
   }
 
-
+  
+  
   return (
-    <Card  className={classes.root}>
-      <CardActionArea>
-        <CardMedia className={classes.media}>
-          <img className="img" src="https://i.ibb.co/RvFtmYB/Group-1329.png" alt="" />
-        </CardMedia>
-      </CardActionArea>
-      <CardActions >
-        <Button className={classes.btn}
-          
+    <div>
+      <div className="ms-auto me-auto" style={{ width: '28rem',height:"100px" }}>
+      
+        <img className="img" src="https://i.ibb.co/RvFtmYB/Group-1329.png" alt="" />
+        
+      </div>
+      
+    <Card className="ms-auto me-auto" style={{ width: '28rem',height:"200px" }}>
+   
+        <Button 
+          className="mt-5 ms-5 btn-primary w-75"
           onClick={SingInWithGooglePopUP}
           size="small"
           variant="contained"
           color="secondary"
 
         > Continue With Google</Button>
-       </CardActions>   
-<CardContent>
-        <p> Already have an Account? Continue With us</p>
-</CardContent>
+       <p>Don't have Account? </p>
+    
     </Card>
+    </div>
   );
 };
 

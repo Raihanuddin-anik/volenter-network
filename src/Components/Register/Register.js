@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router';
 import { UserContext } from '../../App';
 import { Link } from 'react-router-dom';
+import { Card } from '@material-ui/core';
 
 
 
@@ -15,12 +16,13 @@ const Register = () => {
     console.log(Id)
     const id = Id.id
     const [selectedDt, setSelectedData] = useState({});
+    console.log(selectedDt)
     const [loggedInUser, setloggedInUser] = useContext(UserContext);
-    const [submit, setSubmit] = useState(true)
+
 
     useEffect(() => {
 
-        fetch('http://localhost:4000/products')
+        fetch('https://ancient-sands-98079.herokuapp.com/products')
             .then(res => res.json())
             .then(result => {
                 const IdData = result.find(rs => rs.id == id)
@@ -30,7 +32,7 @@ const Register = () => {
             })
     }, [])
     const handleSubmit = (e) => {
-        setSubmit(false)
+
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('date').value;
@@ -44,75 +46,77 @@ const Register = () => {
             Description: description,
             Organization: organization
         }
-       
-        fetch('http://localhost:4000/addVolenter', {
+
+        fetch('https://ancient-sands-98079.herokuapp.com/addVolenter', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-                
+
             },
             body: JSON.stringify(VNInfo)
         })
             .then(res => res.json())
             .then(result => {
-              
+
             })
-            alert("Registation success tap again button to go to your Organization")
-        e.preventDefault();
+        alert("Registation Completed Successfully")
+
     }
     return (
 
-        <div className='div1-area'>
+        <div className='d-flex ' >
+               
+            <div className='m-auto' style={{ width: '400px' }}>
+            <img src="https://i.ibb.co/RvFtmYB/Group-1329.png" alt="" />
 
-            <form className='form1-area' onSubmit={handleSubmit}>
-                <img src="https://i.ibb.co/RvFtmYB/Group-1329.png" alt="" />
-                <h2>Register as a Volenter</h2>
-                <TextField
-                    id="name"
-                    value={loggedInUser.name}
-                    placeholder="Full Name"
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    id="email"
-                    placeholder="UserName or Email"
-                    value={loggedInUser.email}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    id="date"
-                    placeholder="Date"
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    id="description"
-                    placeholder="Description"
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    id="Organization"
-                    placeholder="Organization You booked at"
-                    value={selectedDt.caption}
-                    fullWidth
-                    margin="normal"
-                />
-                  { submit === true ?  <Button type="submit" className="button" variant="contained" color="primary" fullWidth>
-                    Register
-                     </Button> :  <Link to="/volenters"> <Button className="button" variant="contained" color="primary" fullWidth>
-                     Go to Your Registered volentering
-                     </Button>  </Link>}
-                 </form>
-      
-                     
-           
-     
-           
-           
+                 
+                    <h2>Register as a Volenter</h2>
+                    <br/>
+                    <input
+                        id="name"
+                        value={loggedInUser.name}
+                        placeholder="Full Name"
+                        className="input w-100"
 
+                    />
+                    <br />
+                    <input
+                        id="email"
+                        placeholder="UserName or Email"
+                        value={loggedInUser.email}
+                        className="input w-100"
+
+                    />
+                    <br />
+                    <input
+                        id="date"
+                        placeholder="Date"
+                        className="input w-100"
+
+                    />
+                    <br />
+                    <input
+                        id="description"
+                        placeholder="Description"
+                        className="input w-100"
+
+                    />
+                    <br />
+                    <input
+                        id="Organization"
+                        placeholder="Organization You booked at"
+                        value={selectedDt.caption}
+                        className="input w-100"
+
+                    />
+                
+                <br />
+                
+                    <Link className="btn btn-primary w-100 mt-3" onClick={handleSubmit} to="/volenters"> Register
+                     </Link>
+                
+
+            </div>
         </div>
     );
 };

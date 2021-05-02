@@ -1,17 +1,21 @@
 import './App.css';
-import MainPage from './Components/MainPage/MainPage';
-import NavBar from './Components/NavBar/Navbar'
+
+
 import Register from './Components/Register/Register';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route, 
 } from "react-router-dom";
 import LogIn from './Components/LogIn/LogIn';
 import { createContext, useState } from 'react';
 import NoMatch from './Components/NoMatch/NoMatch';
-import Volenters from './Components/Volenters/Volenters';
+import Home from './Components/Home/Home';
+import RegistedVolenter from './Components/RegistedVolenter/RegistedVolenter';
+import Admin from './Components/Admin/Admin/Admin';
+
+
 
 
 export const UserContext = createContext();
@@ -26,8 +30,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/home">
-            <NavBar></NavBar>
-            <MainPage></MainPage>
+             <Home></Home>
           </Route>
           <PrivateRoute path="/registation/:id">
             <Register></Register>
@@ -36,12 +39,13 @@ function App() {
             <LogIn></LogIn>
           </Route>
           <Route exact path="/volenters">
-            <NavBar></NavBar>
-            <Volenters></Volenters>
+        <RegistedVolenter></RegistedVolenter>
+          </Route>
+          <Route exact path="/admin">
+             <Admin></Admin>
           </Route>
           <Route exact path="/">
-            <NavBar></NavBar>
-            <MainPage></MainPage>
+          <Home></Home>
           </Route>
           <Route path="*">
              <NoMatch></NoMatch>

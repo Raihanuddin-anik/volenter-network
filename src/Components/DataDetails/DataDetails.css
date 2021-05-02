@@ -1,7 +1,4 @@
-.content:hover{
-    background-color: blue;
-    justify-items: center
-}
-.style{
+.text{
+    color: #2f2c2c; 
     text-decoration: none;
 }

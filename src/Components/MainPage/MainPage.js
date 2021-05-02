@@ -26,7 +26,7 @@ const MainPage = () => {
    
    useEffect(()=>{
 
-     fetch('http://localhost:4000/products')
+     fetch('https://ancient-sands-98079.herokuapp.com/products')
      .then(res => res.json())
      .then(result => {
        setData(result)
