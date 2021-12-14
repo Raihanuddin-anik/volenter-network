@@ -32,7 +32,7 @@ const Register = () => {
             })
     }, [])
     const handleSubmit = (e) => {
-
+        
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('date').value;
@@ -59,7 +59,9 @@ const Register = () => {
             .then(result => {
 
             })
+          
         alert("Registation Completed Successfully")
+        
 
     }
     return (
@@ -71,6 +73,7 @@ const Register = () => {
 
                  
                     <h2>Register as a Volenter</h2>
+                 
                     <br/>
                     <input
                         id="name"

@@ -17,7 +17,7 @@ const DataDetails = (props) => {
   
   const { url, id, caption } = props.data;
   return (
-    <Link to={`registation/${id}`} className="col-md-3 p-2"  >
+    <Link to={`registation/${id}`} className="col-md-3 col-6 p-2"  >
     <div class="card" style={{borderRadius:"10px"}}>
       <img src={url} class="card-img-top" alt="..."/>
         <div class="card-body">

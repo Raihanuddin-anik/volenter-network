@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faUserFriends } from '@fortawesome/free-solid-svg-icons'
 
-const SideBar = () => {
+const SideBar = ({setTogglePage}) => {
     return (
         <div >
 
@@ -13,11 +13,11 @@ const SideBar = () => {
             <div className="ms-5 p-4">
                 <div className="p-2">
                     <FontAwesomeIcon className="me-3" style={{ color: "blueviolet" }} icon={faUserFriends}></FontAwesomeIcon>
-                    <small style={{ color: "blueviolet" }}>Volenter Register List</small>
+                    <small onClick={()=>setTogglePage(false)} style={{ color: "blueviolet",cursor:"pointer" }}>Volenter Register List</small>
                 </div>
                 <div className="p-2 ">
                     <FontAwesomeIcon className="me-3" icon={faPlus}></FontAwesomeIcon>
-                    <b>Add Event</b>
+                    <b style={{ cursor:"pointer"}} onClick={()=>setTogglePage(true)}>Add Event</b>
                 </div>
             </div>
 

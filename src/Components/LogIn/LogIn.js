@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import './LogIn.css';
 import firebase from "firebase/app";
-
 import "firebase/auth";
 import firebaseConfig from '../firebasae.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Card,Button } from 'react-bootstrap';
+import GoogleButton from 'react-google-button'
+
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
@@ -81,14 +82,13 @@ const LogIn = () => {
       
     <Card className="ms-auto me-auto" style={{ width: '28rem',height:"200px" }}>
    
-        <Button 
+        <GoogleButton 
           className="mt-5 ms-5 btn-primary w-75"
           onClick={SingInWithGooglePopUP}
-          size="small"
-          variant="contained"
-          color="secondary"
+      
+/>"
 
-        > Continue With Google</Button>
+         
        <p>Don't have Account? </p>
     
     </Card>

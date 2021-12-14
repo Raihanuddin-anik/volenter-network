@@ -6,7 +6,8 @@ import SideBar from '../SideBar/SideBar';
 const Admin = () => {
 
     const [volenters, setVolenters] = useState([]);
-
+    const [TogglePage, setTogglePage] = useState(false)
+    console.log(TogglePage)
     useEffect(() => {
         fetch("https://ancient-sands-98079.herokuapp.com/allVolenters")
             .then(res => res.json())
@@ -20,10 +21,10 @@ const Admin = () => {
             <div className="row">
 
                 <div className="col-md-3">
-                    <SideBar></SideBar>
+                    <SideBar TogglePage={TogglePage} setTogglePage={setTogglePage}></SideBar>
                 </div>
                 <div className="col-md-9">
-                    <MainPage data={volenters}></MainPage>
+                    <MainPage TogglePage={TogglePage} setTogglePage={setTogglePage} data={volenters}></MainPage>
                 </div>
             </div>
       
